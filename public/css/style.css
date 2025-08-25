@@ -1,0 +1,121 @@
+/* ===== Bootstrap color-mode aware theme ===== */
+:root,
+[data-bs-theme="light"] {
+  --bg: #f5f7fb;
+  --text: #111827;          /* near-black */
+  --muted: #475569;         /* slate-600 */
+  --card: #ffffff;
+  --card-border: rgba(17,24,39,0.08);
+  --nav-grad: linear-gradient(90deg, #3b82f6, #2563eb);
+  --pill-bg: rgba(15, 23, 42, 0.06);
+  --link: #1d4ed8;
+}
+
+[data-bs-theme="dark"] {
+  --bg: #0b1220;            /* deep navy */
+  --text: #e5e7eb;          /* slate-200 */
+  --muted: #9ca3af;         /* slate-400 */
+  --card: rgba(17, 24, 39, 0.72);
+  --card-border: rgba(255,255,255,0.10);
+  --nav-grad: linear-gradient(90deg, #1e3a8a, #1d4ed8);
+  --pill-bg: rgba(255,255,255,0.08);
+  --link: #93c5fd;
+}
+
+/* Page background + default text */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Optional starfield/nebula overlays for dark */
+[data-bs-theme="dark"] body,
+body.theme-dark {
+  background:
+    radial-gradient(1200px 700px at 10% 0%, rgba(37,99,235,0.18), transparent),
+    radial-gradient(1100px 900px at 90% 20%, rgba(99,102,241,0.16), transparent),
+    linear-gradient(180deg, #0b1220, #121a2e);
+}
+
+/* Navbar */
+.glassy-nav {
+  background: var(--nav-grad);
+  backdrop-filter: blur(6px);
+}
+
+/* Cards */
+.glassy-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+}
+
+/* Info pills under current weather */
+.info-pill {
+  background: var(--pill-bg);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* Links & muted */
+a { color: var(--link); }
+.text-muted { color: var(--muted) !important; }
+
+/* Inputs & selects (ensure readable in dark) */
+.form-control,
+.form-select,
+.input-group-text {
+  color: var(--text);
+  background-color: transparent;
+  border-color: var(--card-border);
+}
+
+.form-control::placeholder { color: var(--muted); }
+
+/* Buttons: improve outlines in dark */
+.btn-outline-secondary,
+.btn-outline-warning,
+.btn-outline-primary,
+.btn-outline-danger {
+  color: var(--text);
+  border-color: var(--card-border);
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-warning:hover,
+.btn-outline-primary:hover,
+.btn-outline-danger:hover {
+  filter: brightness(1.1);
+}
+
+/* Forecast scroll bar */
+.forecast-scroll { scrollbar-width: thin; }
+.forecast-scroll::-webkit-scrollbar { height: 8px; }
+.forecast-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+}
+
+/* Suggestion dropdown */
+.suggest-list {
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  max-height: 260px;
+  overflow: auto;
+  border-radius: 12px;
+}
+.suggest-list .list-group-item {
+  cursor: pointer;
+}
+.suggest-list .list-group-item.active {
+  background-color: rgba(37,99,235,0.12);
+  border-color: transparent;
+}
+
+/* Chart container */
+.chart-wrap { position: relative; width: 100%; min-height: 160px; }
